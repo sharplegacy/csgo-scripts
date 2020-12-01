@@ -1,0 +1,33 @@
+-- ############################################
+-- ############################################
+-- ###      Fortnite Chatper2 Season1       ###
+-- ###           EZ Wall STealer            ###
+-- ###   [Break + Replace + Pull Shotgun]   ###
+-- ############################################
+-- ############################################
+-- ###        LUA by LEGACYSTUDIOS          ###
+-- ###      works with latest Patch         ###
+-- ### $RICH-GANG$, WeedStars, STARPLAYER's ###
+-- ############################################
+-- ############################################
+
+
+function OnEvent(event, arg)
+
+if event == "MOUSE_BUTTON_PRESSED" and arg == 6 then
+	Sleep(10);
+	PressMouseButton(1);
+	Sleep(190);
+	ReleaseMouseButton(1);
+	PressAndReleaseMouseButton(5);
+	Sleep(10);
+	PressMouseButton(1);
+	Sleep(115);
+	ReleaseMouseButton(1);
+	Sleep(100);
+	PressKey("2");
+	Sleep(25);
+	ReleaseKey("2");
+end
+
+end
