@@ -14,7 +14,7 @@ alias "-jumpthrow" "-jump"
 bind "t" "+jumpthrow"
 ```
 
-# Mouse tweaks
+# Mouse Tweaks
 ```
 m_rawinput "1"
 m_pitch "0.022"
@@ -25,7 +25,7 @@ m_mouseaccel1 "0"
 m_mouseaccel2 "0"
 ```
 
-# AUDIO Tewaks
+# Audio Tewaks
 ```
 snd_menumusic_volume "0"
 snd_mix_async "1"
@@ -40,7 +40,7 @@ alias afk2 "-left; -forward; say AFKMODE: OFF; alias afk afk1"
 bind o "afk"
 ```
 
-# Nice CROSSHAIR with high visibility, static
+# Nice Crosshair with high visibility, static
 ```
 cl_crosshairstyle "5"
 cl_crosshaircolor "2"
@@ -60,7 +60,7 @@ cl_crosshair_dynamic_maxdist_splitratio "0.15"
 cl_crosshairdot "0"
 ```
 
-### ADVANCED ATTACK CROSHAIR
+### Advanced Attack Crosshair
 _ The Crosshair schanges from static to Dynamic and gets smaller if you're shooting,
    good for Spray control and accuracy precision _
 ```   
@@ -71,7 +71,7 @@ alias +type "toggle cl_crosshair_t 0 1"
 bind "MOUSE1" "+attack; +color; +gap; +size"
 ```
 
-# MOVEMENT (Clear decals like Bullets, Blood, .. on duck and slowwalk)
+# Movement (Clear decals like Bullets, Blood, .. on duck and slowwalk)
 ```
 bind "a" "+moveleft"
 bind "d" "+moveright"
@@ -100,7 +100,7 @@ safezonex 0.75
 safezoney 0.85
 ```
 
-# Reality VIEWMODEL to make the Game look more natural 
+# Reality Viewmodel to make the Game look more natural 
 ```
 cl_viewmodel_shift_left_amt "0.500000"
 cl_viewmodel_shift_right_amt "0.250000"
@@ -116,6 +116,93 @@ cl_bobamt_vert "0.100000"
 cl_bobcycle "0.98"
 ```
 
+# Rainbow HUD, Rainbow Crosshair (LSD MODE)
+```
+// RAINBOW HUD 
+bind "w" "+forward;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10 11";
+bind "a" "+moveleft;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10"
+bind "s" "+back;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10 11"
+bind "d" "+moveright;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10 11"
+bind "SPACE" "+jump;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10 11"
+bind "ctrl" "+duck;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10 11"
+bind "mouse1" "+attack;toggle cl_hud_color 5 6 4 3 2 1 9 8 7 10 11"
+
+// RAINBOW CROSHAIR
+bind "w" "+forward;toggle cl_crosshaircolor 0 1 2 3 4"
+bind "a" "+moveleft;toggle cl_crosshaircolor 0 1 2 3 4"
+bind "s" "+back;toggle cl_crosshaircolor 0 1 2 3 4"
+bind "d" "+moveright;toggle cl_crosshaircolor 0 1 2 3 4"
+bind "SPACE" "+jump;toggle cl_crosshaircolor 0 1 2 3 4"
+bind "ctrl" "+duck;toggle cl_crosshaircolor 0 1 2 3 4"
+bind "mouse1" "+attack;toggle cl_crosshaircolor 0 1 2 3 4"
+
+// BACK TO DEFAULT
+bind "w" "+forward"
+bind "a" "+moveleft"
+bind "s" "+back"
+bind "d" "+moveright"
+bind "SPACE" "+jump"
+bind "ctrl" "+duck"
+bind "mouse1" "+attack"
+```
+
+# Intelligent MWHEEL Switch
+```
+// Intelligent MWHEEL UP >> Primary Secondary "Weapon-switch"
+alias weaponswitch "weapons1"
+alias weapons1 "slot1;alias weaponswitch weapons2"
+alias weapons2 "slot2;alias weaponswitch weapons1"
+
+bind "mwheelup" "weaponswitch;kslot"
+
+
+// Intelligent MWHEEL DOWN  >> "Greanade-switch"
+alias grenswitch "gren1"
+alias gren1 "use weapon_flashbang;alias grenswitch gren2"
+alias gren2 "use weapon_hegrenade;alias grenswitch gren3"
+alias gren3 "use weapon_smokegrenade;alias grenswitch gren4"
+alias gren4 "use weapon_molotov; use weapon_incgrenade; alias grenswitch gren5"
+alias gren5 "use weapon_decoy; alias grenswitch gren1"
+
+bind "mwheeldown" "grenswitch;kslot"
+
+
+// Toggle between mouselwheel jump and weapon switch
+alias toggleHop toggleHopOn
+alias toggleHopOff "alias toggleHop toggleHopOn; bind mwheelup invprev;bind mwheeldown invnext"
+alias toggleHopOn "alias toggleHop toggleHopOff; bind mwheelup +jump;bind mwheeldown +jump"
+
+bind alt toggleHop 
+```
+
+# TEAMCHAT <> ALLCHAT SWITCH
+```
+// Teamchat on Enter, Allchat on Shift+Enter
+alias +walkchat "+speed; bind enter messagemode2"
+alias -walkchat "-speed; bind enter messagemode"
+
+bind shift +walkchat
+bind rshift +walkchat
+bind enter messagemode
+```
+
+# Buyscript with Chatlog [NUMBLOCK 0 - 3]
+```
+// Key = Numpad "0" (ins) - buy Grenade Utility
+bind "kp_ins" "buy hegrenade;buy smokegrenade;buy flashbang;buy flashbang; say_team [BUYLOG] 2x Flash, 1x HE, 1x Smoke ..."
+
+// Key = Numpad "1" (end) - buy Heavy Pistol: Deagle / Revolver
+bind "kp_end" "buy deagle; buy revolver; say_team [BUYLOG] Dessert Eagle ..."
+
+// Key = Numpad "2" (downarrow) - buy Rifles: M4A1/AK47
+bind "kp_downarrow" "buy ak47; buy m4a1; say_team [BUYLOG] M4A1/AK47 ..."
+
+// Key = Numpad "." (del) - buy Utility: Vesthelm + Defusekit
+bind "kp_del" "buy vesthelm; buy vest;buy defuser; say_team [BUYLOG] Kevlar + Helmet, Defuse kit ..."
+
+// Key = Numpad "3" (pagedown) - buy Sniper: AWP
+bind "kp_pgdn" "buy awp; say_team [BUYLOG] AWP ..."
+```
 
 ### Full Config to copy
 ```
